@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "giphy-app"
+    }
+  },
+  "defaultProject": "giphy-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

@@ -1,0 +1,8 @@
+<input type="text" [(ngModel)]="name" (ngModelChange)="search($event)" placeholder="Search for a gif..." />
+
+Trending:
+
+<section *ngIf="(searchalueAndTotalCount$ | async) as searchalueAndTotalCount">
+    <h1>{{ searchalueAndTotalCount.search }}</h1>
+    <span>{{ searchalueAndTotalCount.totalCount }} GIFs</span>
+</section>
