@@ -1,5 +1,5 @@
 import { Store, select } from '@ngrx/store';
-import { getCurrentGiphy, getIsLoading, getSearchAndTotalCount, selectAllGiphies } from './giphy.selector';
+import { getCurrentGiphy, getIsLoading, getSearch, getTotalCount, selectAllGiphies } from './giphy.selector';
 import { loadMore, search, trending } from './giphy.actions';
 
 import { AppState } from '../..';
@@ -16,13 +16,15 @@ export class GiphyFacade {
   giphies$: Observable<Giphy[]>;
   giphy$: Observable<any>;
   isLoading$: Observable<boolean>;
-  searchalueAndTotalCount$: Observable<any>;
+  totalCount$: Observable<number>;
+  search$: Observable<any>;
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.giphies$ = this.store.pipe(select(selectAllGiphies));
     this.giphy$ = this.store.pipe(select(getCurrentGiphy));
     this.isLoading$ = this.store.pipe(select(getIsLoading));
-    this.searchalueAndTotalCount$ = this.store.pipe(select(getSearchAndTotalCount));
+    this.totalCount$ = this.store.pipe(select(getTotalCount));
+    this.search$ = this.store.pipe(select(getSearch));
   }
 
   search(value: string) {

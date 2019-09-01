@@ -39,10 +39,9 @@ export const getSearch = createSelector(
         giphyState && giphyState.search
 );
 
-export const getSearchAndTotalCount = createSelector(
+export const getTotalCount = createSelector(
     getGiphyState,
-    (giphyState: GiphyState) =>
-        giphyState.search && giphyState.totalCount && { search: giphyState.search, totalCount: giphyState.totalCount }
+    (giphyState: GiphyState) => giphyState.totalCount
 );
 
 export const getCurrentGiphy = createSelector(

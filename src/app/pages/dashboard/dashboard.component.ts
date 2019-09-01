@@ -12,12 +12,14 @@ import { Observable } from 'rxjs';
 export class DashboardComponent implements OnInit {
   giphies$: Observable<Giphy[]>;
   isLoading$: Observable<boolean>;
-  searchalueAndTotalCount$: Observable<any>;
+  totalCount$: Observable<number>;
+  search$: Observable<string>;
 
   constructor(private giphyFacade: GiphyFacade) {
     this.giphies$ = this.giphyFacade.giphies$;
     this.isLoading$ = this.giphyFacade.isLoading$;
-    this.searchalueAndTotalCount$ = this.giphyFacade.searchalueAndTotalCount$;
+    this.totalCount$ = this.giphyFacade.totalCount$;
+    this.search$ = this.giphyFacade.search$;
   }
 
   ngOnInit() {

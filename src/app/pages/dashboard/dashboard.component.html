@@ -1,17 +1,20 @@
 <section class="grid-info" *ngIf="!(isLoading$ | async)">
-    <section *ngIf="(searchalueAndTotalCount$ | async) as searchalueAndTotalCount; else trending">
-        <h1>{{ searchalueAndTotalCount.search }}</h1>
-        <span>{{ searchalueAndTotalCount.totalCount }} GIFs</span>
+    <section *ngIf="(search$ | async) as searchValue; else trending">
+        <h1>{{ searchValue }}</h1>
+        <span>{{ totalCount$ | async }} GIFs</span>
     </section>
     <ng-template #trending>
         <h1>TRENDING GIFS:</h1>
     </ng-template>
 </section>
+
 <section infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" class="grid"
     *ngIf="!(isLoading$ | async); else loading">
     <gif-card data-cy="card" *ngFor="let giphy of giphies$ | async" [giphy]="giphy" (click)="navigate(giphy)">
     </gif-card>
+    <ng-template #noItems>No giphies found!</ng-template>
 </section>
+
 <ng-template #loading>
     <div class="loader"></div>
 </ng-template>
