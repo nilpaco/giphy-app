@@ -1,5 +1,4 @@
 import { CustomSerializer, routerInitialState } from './store/layout/router';
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NavigationActionTiming, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { metaReducers, reducers } from './store';
 
@@ -9,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GiphyEffects } from './store/entity/giphy/giphy.effects';
 import { GiphyResolversModule } from './resolvers/giphy-resolver.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { ServicesModule } from './services/services.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';

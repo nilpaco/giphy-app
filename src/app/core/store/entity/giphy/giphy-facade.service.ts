@@ -1,6 +1,6 @@
 import { Store, select } from '@ngrx/store';
 import { getCurrentGiphy, getIsLoading, getSearchAndTotalCount, selectAllGiphies } from './giphy.selector';
-import { loadMore, search } from './giphy.actions';
+import { loadMore, search, trending } from './giphy.actions';
 
 import { AppState } from '../..';
 import { CoreModule } from 'src/app/core/core.module';
@@ -28,6 +28,11 @@ export class GiphyFacade {
   search(value: string) {
     this.router.navigate(['']);
     this.store.dispatch(search({ search: value }));
+  }
+
+  trending() {
+    this.router.navigate(['']);
+    this.store.dispatch(trending());
   }
 
   loadMore() {

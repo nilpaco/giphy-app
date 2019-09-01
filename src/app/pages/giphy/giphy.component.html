@@ -3,5 +3,5 @@
         <h2>{{ giphy?.title }}</h2>
         <span *ngIf="giphy?.username">@{{ giphy?.username }}</span>
     </section>
-    <img data-cy="gif" [src]="giphy?.images?.downsized?.url">
+    <img data-cy="gif" alt="gif" [src]="giphy?.images?.downsized?.url">
 </section>

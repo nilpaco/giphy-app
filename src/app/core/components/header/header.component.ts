@@ -3,8 +3,19 @@ import { GiphyFacade } from '../../store/entity/giphy/giphy-facade.service';
 
 @Component({
   selector: 'gif-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  template: `
+    <img class="giphy-logo"
+      alt="giphy-logo"
+      src="assets/icons/logo.png"
+      (click)="goToDashboard()">
+    <input data-cy="header"
+      type="text"
+      aria-label="search"
+      [(ngModel)]="value"
+      (ngModelChange)="search($event)"
+      placeholder="Search for a gif..." />
+  `
 })
 export class HeaderComponent {
 
@@ -12,9 +23,12 @@ export class HeaderComponent {
 
   constructor(private giphyFacade: GiphyFacade) { }
 
-
   search(value: string) {
     this.giphyFacade.search(value);
+  }
+
+  goToDashboard() {
+    this.giphyFacade.trending();
   }
 
 }
