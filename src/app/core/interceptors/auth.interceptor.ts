@@ -1,14 +1,12 @@
 import {
-    HttpEvent,
     HttpHandler,
     HttpInterceptor,
     HttpRequest
 } from '@angular/common/http';
-import { Store, select } from '@ngrx/store';
-import { switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+export const API_KEY = '1Kot8ia8mzRIMWVoxJu5d6zPUHkNPlnz';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,6 +16,11 @@ export class AuthInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ) {
+        request = request.clone({
+            setParams: {
+                api_key: API_KEY
+            }
+        });
         return next.handle(request);
     }
 }

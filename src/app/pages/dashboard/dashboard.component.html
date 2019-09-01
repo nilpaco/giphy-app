@@ -9,7 +9,8 @@
 </section>
 <section infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" class="grid"
     *ngIf="!(isLoading$ | async); else loading">
-    <gif-card *ngFor="let giphy of giphies$ | async" [giphy]="giphy" (click)="navigate(giphy)"></gif-card>
+    <gif-card data-cy="card" *ngFor="let giphy of giphies$ | async" [giphy]="giphy" (click)="navigate(giphy)">
+    </gif-card>
 </section>
 <ng-template #loading>
     <div class="loader"></div>

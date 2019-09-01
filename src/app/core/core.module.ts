@@ -1,12 +1,14 @@
 import { CustomSerializer, routerInitialState } from './store/layout/router';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NavigationActionTiming, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { metaReducers, reducers } from './store';
 
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { GiphyEffects } from './store/entity/giphy/giphy.effects';
 import { GiphyResolversModule } from './resolvers/giphy-resolver.module';
-import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServicesModule } from './services/services.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -38,6 +40,13 @@ import { environment } from 'src/environments/environment';
       serializer: CustomSerializer,
       navigationActionTiming: NavigationActionTiming.PreActivation
     }),
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }
