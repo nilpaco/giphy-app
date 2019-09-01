@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
-import { loadMore, loadMoreSuccess, search, searchSuccess, trending, trendingSuccess } from './giphy.actions';
+import { loadMore, loadMoreSuccess, loadOne, loadOneSuccess, search, searchSuccess, trending, trendingSuccess } from './giphy.actions';
 
 import { Giphy } from './giphy.model';
 
@@ -24,12 +24,14 @@ export const initialState: GiphyState = giphyAdapter.getInitialState({
 
 const reducer = createReducer(
   initialState,
-  on(trending, state => ({ ...state, isLoading: true })),
+  on(trending, state => ({ ...state, isLoading: true, search: '', page: 0, totalCount: 0 })),
   on(trendingSuccess, (state, action) => giphyAdapter.addAll(action.giphies, { ...state, isLoading: false })),
-  on(search, (state, action) => ({ ...state, isLoading: true, search: action.search, totalCount: null })),
+  on(search, (state, action) => ({ ...state, isLoading: true, search: action.search, totalCount: null, page: 0 })),
   on(searchSuccess, (state, action) => giphyAdapter.addAll(action.giphies, { ...state, isLoading: false, totalCount: action.totalCount })),
   on(loadMore, state => ({ ...state, page: state.page + 1 })),
   on(loadMoreSuccess, (state, action) => giphyAdapter.addMany(action.giphies, { ...state, isLoading: false })),
+  on(loadOne, state => ({ ...state, isLoading: true })),
+  on(loadOneSuccess, (state, action) => giphyAdapter.addOne(action.giphy, { ...state, isLoading: false })),
 );
 
 export function giphyReducer(state: GiphyState | undefined, action: Action) {

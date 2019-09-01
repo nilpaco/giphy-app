@@ -12,19 +12,23 @@ import { Observable } from 'rxjs';
 export class DashboardComponent implements OnInit {
   giphies$: Observable<Giphy[]>;
   isLoading$: Observable<boolean>;
+  searchalueAndTotalCount$: Observable<any>;
 
   constructor(private giphyFacade: GiphyFacade) {
     this.giphies$ = this.giphyFacade.giphies$;
     this.isLoading$ = this.giphyFacade.isLoading$;
+    this.searchalueAndTotalCount$ = this.giphyFacade.searchalueAndTotalCount$;
   }
 
   ngOnInit() {
   }
 
   onScroll() {
-    console.log('scroll');
-
     this.giphyFacade.loadMore();
+  }
+
+  navigate(giphy: Giphy) {
+    this.giphyFacade.navigateToGiphy(giphy.id);
   }
 
 }

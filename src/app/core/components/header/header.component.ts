@@ -1,22 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { GiphyFacade } from '../../store/entity/giphy/giphy-facade.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'gif-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  searchalueAndTotalCount$: Observable<any>;
+export class HeaderComponent {
 
-  constructor(private giphyFacade: GiphyFacade) {
-    this.searchalueAndTotalCount$ = this.giphyFacade.searchalueAndTotalCount$;
-  }
+  constructor(private giphyFacade: GiphyFacade) { }
 
-  ngOnInit() {
-  }
 
   search(value: string) {
     this.giphyFacade.search(value);

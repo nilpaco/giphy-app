@@ -7,9 +7,8 @@ import { CoreModule } from './core/core.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GiphyComponent } from './pages/giphy/giphy.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { LoadingComponent } from './core/components/loading/loading.component';
-import { LoadingDirective } from './core/directive/loading.directive';
 import { NgModule } from '@angular/core';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +16,7 @@ import { NgModule } from '@angular/core';
     DashboardComponent,
     GiphyComponent,
     CardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

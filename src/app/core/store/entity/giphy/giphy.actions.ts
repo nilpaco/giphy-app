@@ -29,3 +29,12 @@ export const loadMoreSuccess = createAction(
   '[Giphy] Load More Success',
   props<{ giphies: Giphy[] }>()
 );
+
+export const loadOne = createAction(
+  '[Giphy] Load One'
+);
+
+export const loadOneSuccess = createAction(
+  '[Giphy] Load One Success',
+  props<{ giphy: Giphy }>()
+);

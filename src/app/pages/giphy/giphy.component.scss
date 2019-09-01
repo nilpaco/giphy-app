@@ -1,0 +1,21 @@
+:host {
+    margin: 1rem;
+    display: block;
+    .giphy {
+        display: flex;
+        flex-direction: column;
+        max-width: 480px;
+        margin: 0 auto;
+        &-info {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+        img {
+            height: auto;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 1rem;
+        }
+    }
+}

@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 export const BASE_URL = 'http://api.giphy.com/v1/gifs/search?api_key=1Kot8ia8mzRIMWVoxJu5d6zPUHkNPlnz';
 export const URL = 'http://api.giphy.com/v1/gifs/search?api_key=1Kot8ia8mzRIMWVoxJu5d6zPUHkNPlnz&q=';
 export const TRENDING = 'http://api.giphy.com/v1/gifs/trending?api_key=1Kot8ia8mzRIMWVoxJu5d6zPUHkNPlnz';
+export const GIF = (giphyId: string) => `http://api.giphy.com/v1/gifs/${giphyId}?api_key=1Kot8ia8mzRIMWVoxJu5d6zPUHkNPlnz`;
 
 @Injectable({
   providedIn: ServicesModule
@@ -26,6 +27,14 @@ export class GiphyService {
 
   trending(): Observable<Giphy[]> {
     return this.http.get(TRENDING).pipe(
+      map((response: any) => {
+        return response.data;
+      })
+    );
+  }
+
+  loadOne(giphyId: string): Observable<Giphy> {
+    return this.http.get(GIF(giphyId)).pipe(
       map((response: any) => {
         return response.data;
       })

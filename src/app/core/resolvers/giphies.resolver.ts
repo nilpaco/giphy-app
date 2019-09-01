@@ -1,5 +1,5 @@
 import { Store, select } from '@ngrx/store';
-import { loadOne, search, trending } from '../store/entity/giphy/giphy.actions';
+import { search, trending } from '../store/entity/giphy/giphy.actions';
 
 import { AppState } from '../store';
 import { GiphyResolversModule } from './giphy-resolver.module';
@@ -9,11 +9,20 @@ import { getSearch } from '../store/entity/giphy/giphy.selector';
 import { take } from 'rxjs/operators';
 
 @Injectable({ providedIn: GiphyResolversModule })
-export class GiphyResolver implements Resolve<boolean> {
+export class GiphiesResolver implements Resolve<boolean> {
     constructor(private store: Store<AppState>) { }
 
     resolve() {
-        this.store.dispatch(loadOne());
+        this.store.pipe(
+            select(getSearch),
+            take(1)
+        ).subscribe((res: string) => {
+            if (res) {
+                this.store.dispatch(search({ search: res }));
+            } else {
+                this.store.dispatch(trending());
+            }
+        });
         return true;
     }
 }

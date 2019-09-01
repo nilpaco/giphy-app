@@ -1,1 +1,7 @@
-<p>giphy works!</p>
+<section class="giphy" *ngIf="giphy$ | async as giphy">
+    <section class="giphy-info">
+        <h2>{{ giphy?.title }}</h2>
+        <span *ngIf="giphy?.username">@{{ giphy?.username }}</span>
+    </section>
+    <img [src]="giphy?.images?.downsized?.url">
+</section>

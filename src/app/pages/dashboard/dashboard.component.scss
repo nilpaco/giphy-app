@@ -27,15 +27,23 @@
       grid-template-columns: 1fr;
     }
   }
+  .grid-info {
+    margin: 0 2rem;  
+    span {
+      padding-left: .4em;
+      margin-left: 5px;
+    }
+  }
 }
 
 
 .loader {
-  border: 16px solid #f3f3f3;
+  margin: 1rem auto;
+  border: .5rem solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
+  border-top: .5rem solid #3498db;
+  width: 2rem;
+  height: 2rem;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
