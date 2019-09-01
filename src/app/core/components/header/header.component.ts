@@ -8,6 +8,8 @@ import { GiphyFacade } from '../../store/entity/giphy/giphy-facade.service';
 })
 export class HeaderComponent {
 
+  value: string;
+
   constructor(private giphyFacade: GiphyFacade) { }
 
 
