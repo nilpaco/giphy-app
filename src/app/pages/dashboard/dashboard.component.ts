@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { Giphy } from 'src/app/core/store/entity/giphy/giphy.model';
 import { GiphyFacade } from 'src/app/core/store/entity/giphy/giphy-facade.service';
 import { Observable } from 'rxjs';
@@ -9,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   giphies$: Observable<Giphy[]>;
   isLoading$: Observable<boolean>;
   totalCount$: Observable<number>;
@@ -22,9 +21,6 @@ export class DashboardComponent implements OnInit {
     this.search$ = this.giphyFacade.search$;
   }
 
-  ngOnInit() {
-  }
-
   onScroll() {
     this.giphyFacade.loadMore();
   }
@@ -32,5 +28,4 @@ export class DashboardComponent implements OnInit {
   navigate(giphy: Giphy) {
     this.giphyFacade.navigateToGiphy(giphy.id);
   }
-
 }
