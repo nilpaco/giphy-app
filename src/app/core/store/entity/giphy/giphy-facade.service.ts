@@ -14,10 +14,10 @@ import { Router } from '@angular/router';
 })
 export class GiphyFacade {
   giphies$: Observable<Giphy[]>;
-  giphy$: Observable<any>;
+  giphy$: Observable<Giphy>;
   isLoading$: Observable<boolean>;
   totalCount$: Observable<number>;
-  search$: Observable<any>;
+  search$: Observable<string>;
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.giphies$ = this.store.pipe(select(selectAllGiphies));
@@ -44,5 +44,4 @@ export class GiphyFacade {
   navigateToGiphy(giphyId: string) {
     this.router.navigate(['gifs', giphyId]);
   }
-
 }

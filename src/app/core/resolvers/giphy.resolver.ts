@@ -1,19 +1,16 @@
-import { Store, select } from '@ngrx/store';
-import { loadOne, search, trending } from '../store/entity/giphy/giphy.actions';
+import { Action, Store } from '@ngrx/store';
 
 import { AppState } from '../store';
 import { GiphyResolversModule } from './giphy-resolver.module';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { getSearch } from '../store/entity/giphy/giphy.selector';
-import { take } from 'rxjs/operators';
+import { loadOne } from '../store/entity/giphy/giphy.actions';
 
 @Injectable({ providedIn: GiphyResolversModule })
-export class GiphyResolver implements Resolve<boolean> {
-    constructor(private store: Store<AppState>) { }
+export class GiphyResolver implements Resolve<void> {
+  constructor(private store: Store<AppState>) {}
 
-    resolve() {
-        this.store.dispatch(loadOne());
-        return true;
-    }
+  resolve() {
+    return this.store.dispatch(loadOne());
+  }
 }

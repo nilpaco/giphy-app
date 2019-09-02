@@ -9,20 +9,21 @@ import { getSearch } from '../store/entity/giphy/giphy.selector';
 import { take } from 'rxjs/operators';
 
 @Injectable({ providedIn: GiphyResolversModule })
-export class GiphiesResolver implements Resolve<boolean> {
-    constructor(private store: Store<AppState>) { }
+export class GiphiesResolver implements Resolve<void> {
+  constructor(private store: Store<AppState>) {}
 
-    resolve() {
-        this.store.pipe(
-            select(getSearch),
-            take(1)
-        ).subscribe((res: string) => {
-            if (res) {
-                this.store.dispatch(search({ search: res }));
-            } else {
-                this.store.dispatch(trending());
-            }
-        });
-        return true;
-    }
+  resolve() {
+    this.store
+      .pipe(
+        select(getSearch),
+        take(1)
+      )
+      .subscribe((res: string) => {
+        if (res) {
+          return this.store.dispatch(search({ search: res }));
+        } else {
+          return this.store.dispatch(trending());
+        }
+      });
+  }
 }
