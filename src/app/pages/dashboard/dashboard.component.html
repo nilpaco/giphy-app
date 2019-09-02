@@ -1,5 +1,5 @@
 <section class="grid-info" *ngIf="!(isLoading$ | async)">
-    <section *ngIf="(search$ | async) as searchValue; else trending">
+    <section class="search-info" *ngIf="(search$ | async) as searchValue; else trending">
         <h1>{{ searchValue }}</h1>
         <span>{{ totalCount$ | async }} GIFs</span>
     </section>
