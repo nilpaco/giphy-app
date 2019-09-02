@@ -15,7 +15,7 @@ import { GiphyFacade } from '../../store/entity/giphy/giphy-facade.service';
         (ngModelChange)="search($event)"
         placeholder="Search for a gif..."
       />
-      <i class="close" (click)="clearSearch()"></i>
+      <i *ngIf="value" class="close" (click)="clearSearch()"></i>
     </div>
   `
 })
